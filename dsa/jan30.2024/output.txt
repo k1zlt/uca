@@ -1,0 +1,54 @@
+Bubble Sort for Benchmark-1.txt Length of list: 100
+0.0010120868682861328
+Bubble Sort for Benchmark-1.txt Length of list: 1000
+0.0627450942993164
+Bubble Sort for Benchmark-1.txt Length of list: 5000
+1.6328401565551758
+Bubble Sort for Benchmark-2.txt Length of list: 100
+0.0017147064208984375
+Bubble Sort for Benchmark-2.txt Length of list: 1000
+0.11591529846191406
+Bubble Sort for Benchmark-2.txt Length of list: 5000
+3.0830318927764893
+Bubble Sort for Benchmark-3.txt Length of list: 100
+0.0010221004486083984
+Bubble Sort for Benchmark-3.txt Length of list: 1000
+0.08798623085021973
+Bubble Sort for Benchmark-3.txt Length of list: 5000
+2.33937668800354
+Insertion Sort for Benchmark-1.txt Length of list: 100
+0.0002961158752441406
+Insertion Sort for Benchmark-1.txt Length of list: 1000
+0.002566099166870117
+Insertion Sort for Benchmark-1.txt Length of list: 5000
+0.014276742935180664
+Insertion Sort for Benchmark-2.txt Length of list: 100
+0.001055002212524414
+Insertion Sort for Benchmark-2.txt Length of list: 1000
+0.08087038993835449
+Insertion Sort for Benchmark-2.txt Length of list: 5000
+2.196871519088745
+Insertion Sort for Benchmark-3.txt Length of list: 100
+0.0009505748748779297
+Insertion Sort for Benchmark-3.txt Length of list: 1000
+0.04396772384643555
+Insertion Sort for Benchmark-3.txt Length of list: 5000
+1.1659505367279053
+Selection Sort for Benchmark-1.txt Length of list: 100
+0.0005731582641601562
+Selection Sort for Benchmark-1.txt Length of list: 1000
+0.024075746536254883
+Selection Sort for Benchmark-1.txt Length of list: 5000
+0.6089572906494141
+Selection Sort for Benchmark-2.txt Length of list: 100
+0.0006015300750732422
+Selection Sort for Benchmark-2.txt Length of list: 1000
+0.025832176208496094
+Selection Sort for Benchmark-2.txt Length of list: 5000
+0.6230595111846924
+Selection Sort for Benchmark-3.txt Length of list: 100
+0.0004956722259521484
+Selection Sort for Benchmark-3.txt Length of list: 1000
+0.025215625762939453
+Selection Sort for Benchmark-3.txt Length of list: 5000
+0.6229960918426514
