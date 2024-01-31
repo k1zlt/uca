@@ -52,17 +52,21 @@ for benchmark in benchmarks:
     bubble_sort(l[:100], benchmark)
     bubble_sort(l[:1000], benchmark)
     bubble_sort(l[:5000], benchmark)
-   
+    bubble_sort(l[:10000], benchmark)
+    bubble_sort(l[:100000], benchmark)
 
 for benchmark in benchmarks:
     l = list(map(int, open(os.path.join(os.getcwd(), 'benchmarks', benchmark), 'r').readlines()))
     insertion_sort(l[:100], benchmark)
     insertion_sort(l[:1000], benchmark)
     insertion_sort(l[:5000], benchmark)
-    
+    insertion_sort(l[:10000], benchmark)
+    insertion_sort(l[:100000], benchmark)
 
 for benchmark in benchmarks:
     l = list(map(int, open(os.path.join(os.getcwd(), 'benchmarks', benchmark), 'r').readlines()))
     selection_sort(l[:100], benchmark)
     selection_sort(l[:1000], benchmark)
     selection_sort(l[:5000], benchmark)
+    selection_sort(l[:10000], benchmark)
+    selection_sort(l[:100000], benchmark)
