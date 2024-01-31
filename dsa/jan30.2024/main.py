@@ -247,6 +247,7 @@ for benchmark in benchmarks:
     redix_sort(l[:1000], benchmark)
     redix_sort(l[:5000], benchmark)
     redix_sort(l[:10000], benchmark)
+    redix_sort(l, benchmark)
 
 for benchmark in benchmarks:
     l = list(map(int, open(os.path.join(os.getcwd(), 'benchmarks', benchmark), 'r').readlines()))
@@ -254,3 +255,5 @@ for benchmark in benchmarks:
     counting_sort(l[:1000], benchmark)
     counting_sort(l[:5000], benchmark)
     counting_sort(l[:10000], benchmark)
+    counting_sort(l, benchmark)
+
