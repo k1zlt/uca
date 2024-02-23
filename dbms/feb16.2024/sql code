@@ -1,49 +1,65 @@
+SET datestyle TO 'MDY';
+
 DROP TABLE if exists job CASCADE;
 CREATE TABLE if not exists job(
 	job_id serial primary key,
 	job_title varchar(256)
 );
-DROP TABLE if exists deparment CASCADE;
+
+DROP TABLE if exists department CASCADE;
 CREATE TABLE if not exists department (
 	department_id serial primary key,
 	department_name varchar(256)
 );
+
 DROP TABLE if exists business_unit CASCADE;
 CREATE TABLE if not exists business_unit (
 	business_unit_id serial primary key,
 	business_unit_name varchar(256)
 );
+
 DROP TYPE if exists gender CASCADE;
 CREATE TYPE gender as ENUM ('Male', 'Female');
+
 DROP TABLE if exists country CASCADE;
 CREATE TABLE if not exists country (
 	country_id serial primary key,
 	country_name varchar(256)
 );
-DROP table if exists location cascade;
-CREATE TABLE if not exists location(
-	location_id serial primary key,
-	city varchar(256),
-	country int references country(country_id)
+
+DROP table if exists city cascade;
+CREATE TABLE if not exists city(
+	city_id serial primary key,
+	city_name varchar(256),
+	country_id int references country(country_id)
 );
+
 DROP table if exists ethnicity cascade;
 CREATE TABLE if not exists ethnicity(
 	ethnicity_id serial primary key,
 	ethnicity_name varchar(256)
 );
+
+DROP table if exists job_info cascade;
+CREATE TABLE if not exists job_info(
+	job_info_id serial primary key,
+	job_id int references job(job_id) on delete cascade not null,
+	department_id int references department(department_id) on delete cascade not null,
+	business_unit_id int references business_unit(business_unit_id) on delete cascade not null
+);
+
 DROP table if exists employee cascade;
 CREATE TABLE if not exists Employee (
 	id serial primary key,
-	eeid int not null,
-	job_id int references job(job_id) on delete cascade not null,
-	department_id int references department(department_id) on delete cascade not null,
-	business_unit_id int references business_unit(business_unit_id) on delete cascade not null,
+	eeid varchar(10) not null,
+	full_name varchar(256) not null,
+	job_info_id int references job_info(job_info_id) on delete cascade not null,
 	gender gender not null,
-	ethnicity int references ethnicity(ethnicity_id) on delete cascade not null,
+	ethnicity_id int references ethnicity(ethnicity_id) on delete cascade not null,
 	age int not null,
 	hire_date date not null,
 	annual_salary double precision not null,
 	bonus integer not null,
-	location_id int references location(location_id) on delete cascade not null,
-	exit_date date not null
+	city_id int references city(city_id) on delete cascade not null,
+	exit_date date
 );

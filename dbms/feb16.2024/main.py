@@ -74,21 +74,34 @@ def get_or_insert_country(cur, row):
     country_id = fo[0]
     return country_id
 
-def get_or_insert_location(cur, row):
-    check_query = f"SELECT * FROM location WHERE city = '{row['City']}'"
+def get_or_insert_city(cur, row):
+    check_query = f"SELECT * FROM city WHERE city_name = '{row['City']}'"
     cur.execute(check_query)
     fo = cur.fetchone()
     if fo is None:
         country_id = get_or_insert_country(cur, row)
-        insert_query = f"INSERT INTO location (city, country) VALUES ('{row['City']}', '{country_id}')"
+        insert_query = f"INSERT INTO city (city_name, country_id) VALUES ('{row['City']}', '{country_id}')"
         cur.execute(insert_query)
         conn.commit()
-    check_query = f"SELECT * FROM location WHERE city = '{row['City']}'"
+    check_query = f"SELECT * FROM city WHERE city_name = '{row['City']}'"
     cur.execute(check_query)
     fo = cur.fetchone()
     location_id = fo[0]
     return location_id
 
+def get_or_insert_job_info(cur, job_id, department_id, business_unit_id, row):
+    check_query = f"SELECT * FROM job_info WHERE job_id = '{job_id}' AND department_id = '{department_id}' AND business_unit_id = '{business_unit_id}'"
+    cur.execute(check_query)
+    fo = cur.fetchone()
+    if fo is None:
+        insert_query = f"INSERT INTO job_info (job_id, department_id, business_unit_id) VALUES ('{job_id}', '{department_id}', '{business_unit_id}')"
+        cur.execute(insert_query)
+        conn.commit()
+    check_query = f"SELECT * FROM job_info WHERE job_id = '{job_id}' AND department_id = '{department_id}' AND business_unit_id = '{business_unit_id}'"
+    cur.execute(check_query)
+    fo = cur.fetchone()
+    job_info_id = fo[0]
+    return job_info_id
 
 def insert_row(cur, row):
     eeid = row['EEID']
@@ -96,13 +109,14 @@ def insert_row(cur, row):
     job_id = get_or_insert_job(cur, row)
     department_id = get_or_insert_department(cur, row)
     business_unit_id = get_or_insert_business_unit(cur, row)
+    job_info = get_or_insert_job_info(cur, job_id, department_id, business_unit_id, row)
     gender = row['Gender']
     ethnicity = get_or_insert_ethnicity(cur, row)
     age = row['Age']
     hire_date = row['Hire Date']
     annual_salary = row['Annual Salary'][1:].replace(',', '.')
     bonus = row['Bonus %'].replace('%', '')
-    location_id = get_or_insert_location(cur, row)
+    city_id = get_or_insert_city(cur, row)
     exit_date = row['Exit Date']
 
     if exit_date == '':
@@ -114,9 +128,9 @@ def insert_row(cur, row):
     if fo is not None:
         print(f"{eeid} already exists in employee table")
         return
-    insert_query = f"INSERT INTO employee (eeid, full_name, job_id, department_id, business_unit_id, gender, ethnicity_id, age, hire_date, annual_salary, bonus, location_id, exit_date) VALUES ('{eeid}', '{full_name}', '{job_id}', '{department_id}', '{business_unit_id}', '{gender}', '{ethnicity}', '{age}', '{hire_date}', '{annual_salary}', '{bonus}', '{location_id}', '{exit_date}')"
+    insert_query = f"INSERT INTO employee (eeid, full_name, job_info_id, gender, ethnicity_id, age, hire_date, annual_salary, bonus, city_id, exit_date) VALUES ('{eeid}', '{full_name}', '{job_info}', '{gender}', '{ethnicity}', '{age}', '{hire_date}', '{annual_salary}', '{bonus}', '{city_id}', '{exit_date}')"
     if exit_date is None:
-        insert_query = f"INSERT INTO employee (eeid, full_name, job_id, department_id, business_unit_id, gender, ethnicity_id, age, hire_date, annual_salary, bonus, location_id, exit_date) VALUES ('{eeid}', '{full_name}', '{job_id}', '{department_id}', '{business_unit_id}', '{gender}', '{ethnicity}', '{age}', '{hire_date}', '{annual_salary}', '{bonus}', '{location_id}', NULL)"
+        insert_query = f"INSERT INTO employee (eeid, full_name, job_info_id, gender, ethnicity_id, age, hire_date, annual_salary, bonus, city_id, exit_date) VALUES ('{eeid}', '{full_name}', '{job_info}', '{gender}', '{ethnicity}', '{age}', '{hire_date}', '{annual_salary}', '{bonus}', '{city_id}', NULL)"
 
     cur.execute(insert_query)
     conn.commit()
