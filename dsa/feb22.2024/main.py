@@ -74,18 +74,24 @@ while True:
     queue_screen.fill(light_orange)
     stack_screen.fill(light_green)
 
-    enqueue_button, enqueue_text, enqueue_rect = create_button("Enqueue", (100, 3 * height // 8 + 25), queue_screen, light_green, black)
-    dequeue_button, dequeue_text, dequeue_rect = create_button("Dequeue", (width // 2 - enqueue_button.w // 2, 3 * height // 8 + 25), queue_screen, light_green, black)
-    reset_queue_button, reset_text, reset_rect = create_button("Reset Queue", (width - 300, 3 * height // 8 + 25), queue_screen, light_green, black)
+    enqueue_button, enqueue_text, enqueue_rect = \
+        create_button("Enqueue", (100, 3 * height // 8 + 25), queue_screen, light_green, black)
+    dequeue_button, dequeue_text, dequeue_rect = \
+        create_button("Dequeue", (width // 2 - enqueue_button.w // 2, 3 * height // 8 + 25), queue_screen, light_green, black)
+    reset_queue_button, reset_text, reset_rect = \
+        create_button("Reset Queue", (width - 300, 3 * height // 8 + 25), queue_screen, light_green, black)
     
     render_list(queue, (120, 150), queue_screen, light_green, black)
     render_length(queue, 0, queue_screen, light_orange, black)
     screen.blit(queue_screen, (0, 0))
     pg.draw.line(screen, black, (0, height // 4+100), (width, height // 4+100), 2)
 
-    push_button, push_text, push_rect = create_button("Push", (100, 3 * height // 8 + 25), stack_screen, light_orange, black)
-    pop_button, pop_text, pop_rect = create_button("Pop", (width // 2 - enqueue_button.w // 2, 3 * height // 8 + 25), stack_screen, light_orange, black)
-    reset_stack_button, reset_text, reset_rect = create_button("Reset Stack", (width - 300, 3 * height // 8 + 25), stack_screen, light_orange, black)
+    push_button, push_text, push_rect = \
+        create_button("Push", (100, 3 * height // 8 + 25), stack_screen, light_orange, black)
+    pop_button, pop_text, pop_rect = \
+        create_button("Pop", (width // 2 - enqueue_button.w // 2, 3 * height // 8 + 25), stack_screen, light_orange, black)
+    reset_stack_button, reset_text, reset_rect = \
+        create_button("Reset Stack", (width - 300, 3 * height // 8 + 25), stack_screen, light_orange, black)
 
     render_list(stack, (120, 150), stack_screen, light_orange, black)
     render_length(stack, 0, stack_screen, light_green, black)
