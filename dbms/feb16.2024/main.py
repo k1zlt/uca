@@ -67,7 +67,6 @@ def get_or_insert_country(cur, row):
         cur.execute(insert_query)
         conn.commit()
         country_id = cur.lastrowid
-        print(f"Inserted {row['Country']} into country table")
     check_query = f"SELECT * FROM country WHERE country_name = '{row['Country']}'"
     cur.execute(check_query)
     fo = cur.fetchone()
@@ -86,8 +85,8 @@ def get_or_insert_city(cur, row):
     check_query = f"SELECT * FROM city WHERE city_name = '{row['City']}'"
     cur.execute(check_query)
     fo = cur.fetchone()
-    location_id = fo[0]
-    return location_id
+    city_id = fo[0]
+    return city_id
 
 def get_or_insert_job_info(cur, job_id, department_id, business_unit_id, row):
     check_query = f"SELECT * FROM job_info WHERE job_id = '{job_id}' AND department_id = '{department_id}' AND business_unit_id = '{business_unit_id}'"
@@ -147,11 +146,13 @@ db_params = {
 conn = psycopg2.connect(**db_params)
 cur = conn.cursor()
 
-with open('Employee Sample Data.csv', 'r', encoding='utf-8', errors='replace') as f:
-    with open('sql table for problem 2 dbms', 'r', encoding='utf-8', errors='replace') as s:
+with open('sql code', 'r', encoding='utf-8', errors='replace') as s:
         s = s.read()
         cur.execute(s)
         conn.commit()
+        print('Tables are successfully recreated.')
+
+with open('Employee Sample Data.csv', 'r', encoding='utf-8', errors='replace') as f:
     reader = csv.DictReader(f)
     print(reader.fieldnames)
     for row in reader:
