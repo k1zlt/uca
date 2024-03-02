@@ -12,7 +12,7 @@ light_green = _("a5c90f")
 green = _("6f9c3d")
 black = _("000000")
 disabled = _("d3d3d3")
-font = pg.font.Font('Pixeltype.ttf', 30)
+font = pg.font.Font(None, 30)
 
 
 def render_list(l, start_pos, screen, color, text_color):
