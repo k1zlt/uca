@@ -93,5 +93,12 @@ with open('WinterAthletesSampleData - Athletes.csv', 'r', encoding='utf-8', erro
     for row in reader:
         insert_row(cur, row)
 
+with open('show results.sql', 'r', encoding='utf-8', errors='replace') as s:
+    s = s.read()
+    cur.execute(s)
+    conn.commit()
+    print("Done.")
+
+
 cur.close()
 conn.close()
