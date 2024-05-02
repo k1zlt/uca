@@ -41,8 +41,9 @@ SELECT CONCAT(
     SUBSTRING('abcdefghijklmnopqrstuvwxyz', CAST(FLOOR(RANDOM() * 26) + 1 as INTEGER), 1),
     '.com'
 ) AS email;
+
 -- Write a SQL query to generate a random price between a 50,000 and 65,000 value.
-SELECT ROUND((RANDOM() * (65000 - 50000) + 50000) * 100) / 100 AS price;
+SELECT ROUND((RANDOM() * (65000 - 50000) + 50000)) AS price;
 -- Write a SQL query to generate a random latitude and longitude.
 SELECT 
     ROUND((RANDOM() * 180 - 90) * 1000000) / 1000000 AS latitude, 
